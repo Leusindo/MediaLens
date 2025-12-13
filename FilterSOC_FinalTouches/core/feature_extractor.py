@@ -25,7 +25,6 @@ class SlovakBERTFeatureExtractor:
         self.logger.info(f"BERT model načítaný na: {self.config.DEVICE}")
 
     def get_embeddings(self, texts: List[str]) -> np.ndarray:
-        """Extrahuje BERT embeddings"""
         self.logger.info(f"Extrahujem BERT embeddings pre {len(texts)} textov...")
 
         all_embeddings = []
@@ -33,7 +32,6 @@ class SlovakBERTFeatureExtractor:
         for i in range(0, len(texts), self.config.BATCH_SIZE):
             batch_texts = texts[i:i + self.config.BATCH_SIZE]
 
-            # Tokenizácia
             encoded = self.tokenizer(
                 batch_texts,
                 padding=True,
@@ -42,13 +40,10 @@ class SlovakBERTFeatureExtractor:
                 return_tensors="pt"
             )
 
-            # Presun na správne zariadenie
             encoded = {k: v.to(self.config.DEVICE) for k, v in encoded.items()}
 
-            # Forward pass bez gradientov
             with torch.no_grad():
                 outputs = self.model(**encoded)
-                # Použijeme mean pooling
                 embeddings = torch.mean(outputs.last_hidden_state, dim=1)
                 all_embeddings.append(embeddings.cpu().numpy())
 
@@ -80,7 +75,6 @@ class HybridFeatureExtractor:
         self.is_fitted = False
 
     def fit(self, texts: List[str]):
-        """Trénovanie feature extractorov"""
         self.logger.info("Trénujem hybridný feature extractor...")
 
         if self.use_tfidf:
@@ -100,7 +94,6 @@ class HybridFeatureExtractor:
         return self
 
     def transform(self, texts: List[str]) -> np.ndarray:
-        """Transformácia textov na features"""
         if not self.is_fitted:
             raise ValueError("Feature extractor musí byť najprv natrénovaný!")
 
@@ -120,14 +113,12 @@ class HybridFeatureExtractor:
             features_list.append(bert_features)
             self.logger.debug(f"BERT features shape: {bert_features.shape}")
 
-        # Kombinácia features
         combined_features = np.hstack(features_list)
         self.logger.info(f"Kombinované features shape: {combined_features.shape}")
 
         return combined_features
 
     def save(self):
-        """Uloží natrénovaný feature extractor"""
         os.makedirs(self.config.MODELS_DIR, exist_ok=True)
 
         if self.use_tfidf:
@@ -139,7 +130,6 @@ class HybridFeatureExtractor:
         self.logger.info("Feature extractor uložený")
 
     def load(self):
-        """Načíta natrénovaný feature extractor"""
         if self.use_tfidf:
             self.tfidf = joblib.load(os.path.join(self.config.MODELS_DIR, 'tfidf_vectorizer.joblib'))
 

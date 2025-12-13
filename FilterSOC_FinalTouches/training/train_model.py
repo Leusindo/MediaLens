@@ -3,18 +3,15 @@ import logging
 import sys
 import os
 
-# OPRAVA: Jednoduché riešenie importu
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(script_dir)
 sys.path.insert(0, project_root)
 
-# TERAZ použij absolútny import
 from core.classifier import NewsClassifier
 
 
 
 def setup_logging():
-    """Nastavenie logovania"""
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -26,7 +23,6 @@ def setup_logging():
 
 
 def main():
-    """Hlavná funkcia pre trénovanie"""
     setup_logging()
     logger = logging.getLogger(__name__)
 
