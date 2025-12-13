@@ -39,7 +39,7 @@ class FilterSOCApp:
 
         title_label = ctk.CTkLabel(
             main_frame,
-            text="FilterSOC Alpha4 + Self-Learning 🧠",
+            text="FilterSOC Alpha4 + Self-Learning",
             font=ctk.CTkFont(size=20, weight="bold")
         )
         title_label.pack(pady=20)
@@ -48,13 +48,13 @@ class FilterSOCApp:
         self.notebook.pack(fill="both", expand=True, pady=10)
 
         classification_tab = ctk.CTkFrame(self.notebook)
-        self.notebook.add(classification_tab, text="🔍 Klasifikácia")
+        self.notebook.add(classification_tab, text="Klasifikácia")
 
         learning_tab = ctk.CTkFrame(self.notebook)
-        self.notebook.add(learning_tab, text="🧠 Self-Learning")
+        self.notebook.add(learning_tab, text="Self-Learning")
 
         news_tab = ctk.CTkFrame(self.notebook)
-        self.notebook.add(news_tab, text="📰 Zber Správ")
+        self.notebook.add(news_tab, text="Zber Správ")
 
         self.setup_classification_tab(classification_tab)
 
@@ -364,7 +364,7 @@ class FilterSOCApp:
 
             classified_items = self.news_collector.auto_classify_and_learn(
                 self.self_learning,
-                min_confidence=0.0
+                min_confidence=0.85
             )
 
 
