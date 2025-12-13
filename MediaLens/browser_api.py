@@ -3,11 +3,9 @@ from flask_cors import CORS
 from core.classifier import NewsClassifier
 
 app = Flask(__name__)
-CORS(app)  # povolí CORS pre všetky originy (na demo ideálne)
+CORS(app)
 
 classifier = NewsClassifier()
-# podľa tvojho projektu buď load, alebo init, podľa toho čo máš:
-# classifier.load_models()
 
 @app.route("/classify", methods=["POST", "OPTIONS"])
 def classify():
