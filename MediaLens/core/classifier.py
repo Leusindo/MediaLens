@@ -198,6 +198,28 @@ class NewsClassifier:
 
         return predicted_label, prob_dict
 
+    def classify(self, text: str) -> Dict[str, Any]:
+
+        cleaned_text = self._clean_text(text)
+        if not cleaned_text:
+            raise ValueError("Text nemôže byť prázdny.")
+
+        try:
+            label, probabilities = self.predict(cleaned_text)
+        except Exception as exc:
+            self.logger.warning("Modelové predikovanie zlyhalo, používam fallback: %s", exc)
+            label, probabilities = self._fallback_prediction(text)
+
+        confidence = float(max(probabilities.values()) if probabilities else 0.0)
+
+        return {
+            "label": label,
+            "confidence": confidence,
+            "probabilities": probabilities,
+            "cleaned_text": cleaned_text,
+        }
+
+
     def predict_batch(self, texts: List[str], show_progress: bool = True) -> List[Dict[str, Any]]:
 
         if not self.is_loaded and not self.load_models():

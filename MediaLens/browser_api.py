@@ -16,7 +16,13 @@ def classify():
     if not text:
         return jsonify({"error": "Empty text"}), 400
 
-    result = classifier.classify(text)
+    try:
+        result = classifier.classify(text)
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+    except Exception as exc:
+        app.logger.exception("Unexpected error during classification")
+        return jsonify({"error": f"Classification failed: {exc}"}), 500
     return jsonify(result)
 
 if __name__ == "__main__":

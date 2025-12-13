@@ -9,12 +9,28 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener((info) => {
   if (info.menuItemId !== "analyzeHeadline") return;
 
+  const selectedText = (info.selectionText || "").trim();
+  if (!selectedText) {
+    chrome.notifications.create({
+      type: "basic",
+      iconUrl: "icon.png",
+      title: "MediaLens – chyba",
+      message: "Najprv označte text, ktorý chcete analyzovať."
+    });
+    return;
+  }
+
   fetch("http://127.0.0.1:5000/classify", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text: info.selectionText })
+    body: JSON.stringify({ text: selectedText })
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`API odpovedalo chybou (${res.status})`);
+      }
+      return res.json();
+    })
     .then(data => {
       const title = data.error ? "MediaLens – chyba" : "MediaLens – výsledok";
       const message = data.error
