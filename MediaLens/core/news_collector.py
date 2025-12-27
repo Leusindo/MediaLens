@@ -27,17 +27,12 @@ class NewsCollector:
             "https://www.sme.sk/rss-title",
             "https://spravy.pravda.sk/rss/xml/",
             "https://hnonline.sk/feed",
-            "https://kosice.dnes24.sk/feed/",
-            "https://bratislava.dnes24.sk/feed/",
             "https://www.korzar.sme.sk/rss/",
             "https://tech.sme.sk/rss-title",
             "https://ekonomika.sme.sk/rss-title",
             "https://sport.sme.sk/rss-title",
             "https://www.dennikn.sk/feed/",
             "https://www.startitup.sk/feed/",
-            "https://www.trend.sk/feed",
-            "https://www.zive.sk/rss/",
-
         ]
 
         self.news_websites = [
@@ -79,7 +74,7 @@ class NewsCollector:
                             continue
 
                         if normalized_title in seen_titles:
-                            self.logger.debug(f"⏭️ Duplikát preskočený: '{normalized_title}'")
+                            self.logger.debug(f"Duplikát preskočený: '{normalized_title}'")
                             continue
 
                         if self._is_slovak_title(normalized_title):

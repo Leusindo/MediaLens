@@ -7,6 +7,7 @@ CORS(app)
 
 classifier = NewsClassifier()
 
+
 @app.route("/classify", methods=["POST", "OPTIONS"])
 def classify():
     data = request.get_json(silent=True) or {}
@@ -22,6 +23,7 @@ def classify():
         app.logger.exception("Unexpected error during classification")
         return jsonify({"error": f"Classification failed: {exc}"}), 500
     return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000)
