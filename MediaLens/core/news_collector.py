@@ -219,6 +219,7 @@ class NewsCollector:
         except Exception as e:
             self.logger.error(f"Chyba v auto_classify_and_learn: {e}")
             return []
+
     def _save_collected_news(self, news_items: List[Dict]):
         try:
             if not news_items:
