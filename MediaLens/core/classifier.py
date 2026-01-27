@@ -1,16 +1,15 @@
 # core/classifier.py
 import logging
-import numpy as np
-import pandas as pd
-import joblib
 import os
 import re
 from typing import List, Dict, Tuple, Any
+import joblib
+import numpy as np
 from tqdm import tqdm
+from .config import Config
+from .data_processor import DataProcessor
 from .feature_extractor import HybridFeatureExtractor
 from .model_trainer import ModelTrainer
-from .data_processor import DataProcessor
-from .config import Config
 
 
 class NewsClassifier:
@@ -102,8 +101,6 @@ class NewsClassifier:
 
     def _evaluate_training(self, X_test, y_test, original_labels) -> Dict[str, Any]:
         from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-        import seaborn as sns
-        import matplotlib.pyplot as plt
 
         y_pred = self.model_trainer.model.predict(X_test)
         y_pred_proba = self.model_trainer.model.predict_proba(X_test)

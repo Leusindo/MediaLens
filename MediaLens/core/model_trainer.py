@@ -1,10 +1,11 @@
 # core/model_trainer.py
 import logging
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, accuracy_score
-import joblib
 import os
-import numpy as np
+
+import joblib
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
 from .config import Config
 
 

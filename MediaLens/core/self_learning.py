@@ -1,12 +1,12 @@
 # core/self_learning.py
-import pandas as pd
-import numpy as np
-import logging
-import joblib
-import os
 import difflib
+import logging
+import os
 from datetime import datetime
-from typing import List, Dict, Tuple
+from typing import Dict, Tuple
+
+import pandas as pd
+
 from .config import Config
 
 

@@ -1,6 +1,7 @@
 # core/config.py
-import torch
 import os
+
+import torch
 
 
 class Config:
@@ -27,7 +28,12 @@ class Config:
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
     CATEGORIES = [
-        'clickbait', 'conspiracy', 'false_news',
-        'propaganda', 'satire', 'misleading',
-        'biased', 'legitimate'
+        'clickbait',
+        'conspiracy',
+        'false_news',
+        'propaganda',
+        'satire',
+        'misleading',
+        'biased',
+        'legitimate'
     ]

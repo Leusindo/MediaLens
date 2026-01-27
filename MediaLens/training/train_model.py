@@ -1,7 +1,7 @@
 # training/train_model.py
 import logging
-import sys
 import os
+import sys
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(script_dir)

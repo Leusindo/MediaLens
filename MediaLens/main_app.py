@@ -1,14 +1,14 @@
 # main_app.py
-import customtkinter as ctk
-import tkinter as tk
-from tkinter import ttk, messagebox
 import logging
-import sys
 import os
-from PIL import Image, ImageTk
+import sys
+from tkinter import ttk, messagebox
+
+import customtkinter as ctk
+
 from core.classifier import NewsClassifier
-from core.self_learning import SelfLearningSystem
 from core.news_collector import NewsCollector
+from core.self_learning import SelfLearningSystem
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 

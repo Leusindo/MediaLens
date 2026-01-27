@@ -1,13 +1,15 @@
 # core/feature_extractor.py
-import torch
-from transformers import AutoTokenizer, AutoModel
-import numpy as np
 import logging
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import TruncatedSVD
-from typing import List
-import joblib
 import os
+from typing import List
+
+import joblib
+import numpy as np
+import torch
+from sklearn.decomposition import TruncatedSVD
+from sklearn.feature_extraction.text import TfidfVectorizer
+from transformers import AutoTokenizer, AutoModel
+
 from .config import Config
 
 

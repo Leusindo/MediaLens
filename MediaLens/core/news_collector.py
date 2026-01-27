@@ -1,13 +1,13 @@
 # core/news_collector.py
-import feedparser
-import requests
-from bs4 import BeautifulSoup
 import logging
+import os
 import time
-import pandas as pd
 from datetime import datetime
 from typing import List, Dict
-import os
+
+import feedparser
+import pandas as pd
+
 from .config import Config
 
 
