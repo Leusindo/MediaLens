@@ -51,8 +51,8 @@ class MediaLensPresentation:
         self.add_nav("SOČ", self.title, "soc")
         self.add_nav("Problematika", self.problem, "problem")
         self.add_nav("Cieľ práce", self.goal, "goal")
-        self.add_nav("Technológie a postup", self.tech, "tech")
-        self.add_nav("Systém MediaLens", self.medialens, "medialens")
+        self.add_nav("Metodika", self.tech, "tech")
+        self.add_nav("Použité technológie", self.medialens, "medialens")
         self.add_nav("Výsledky a overenie", self.functionality, "functionality")
         self.add_nav("Ukážka", self.video, "video")
         self.add_nav("Závery a prínos práce", self.results, "results")
@@ -115,7 +115,7 @@ class MediaLensPresentation:
             font=ctk.CTkFont(size=self.font_body),
             wraplength=self.wrap_width,
             justify="left"
-        ).pack(anchor="w", padx=50, pady=8)
+        ).pack(anchor="w", padx=30, pady=(30, 6))
 
     def tab_bullet(self, parent, text):
         ctk.CTkLabel(
@@ -141,12 +141,12 @@ class MediaLensPresentation:
     # ===== SLIDES =====
     def title(self):
         self.clear_main()
-        self.header("Súkromná stredná odborná škola, Ul. 29 Augusta 4812, Poprad")
+        self.header("Využitie hybridných NLP modelov pri detekcii manipulatívnych techník v mediálnych titulkoch")
         card = self.card()
 
-        self.bullet(card, "Využitie hybridných NLP modelov pri detekcii manipulatívnych techník v mediálnych titulkoch")
-        self.bullet(card, "Leo Ondrejka")
-        self.bullet(card, "Č. odboru: 11 - Informatika")
+        self.bullet(card, "Súkromná stredná odborná škola, Ul. 29 Augusta 4812, Poprad")
+        self.bullet(card, "Č. odboru: 11 – Informatika")
+        self.bullet(card, "Autor: Leo Ondrejka")
 
     def problem(self):
         self.clear_main()
@@ -154,70 +154,74 @@ class MediaLensPresentation:
         card = self.card()
 
         self.bullet(card, "Informačné preťaženie")
-        self.bullet(card, "Kognitívne skraty")
-        self.bullet(card, "Vplyv na verejnú mienku")
+        self.bullet(card, "Clickbait")
+        self.bullet(card, "Emócie namiesto faktov")
+        self.bullet(card, "Slabé rozpoznávanie manipulácie")
 
     def goal(self):
         self.clear_main()
         self.header("Cieľ práce")
         card = self.card()
 
-        self.bullet(card, "Vytvoriť funkčný prototyp detekčného systému")
-        self.bullet(card, "Zamerať sa na slovenský jazyk")
-        self.bullet(card, "Kombinovať prístupy:")
-        self.tab_bullet(card, "Lexikálny")
-        self.tab_bullet(card, "Kontextový")
+        self.bullet(card, "AI systém na analýzu titulkov")
+        self.bullet(card, "Zameranie na slovenský jazyk")
+        self.bullet(card, "Kombinácia lexiky a kontextu")
+        self.bullet(card, "Praktický a zrozumiteľný nástroj")
 
     def tech(self):
         self.clear_main()
-        self.header("Použité technológie a postup")
+        self.header("Metodika")
         card = self.card()
 
-        self.bullet(card, "Jazyk: Python")
-        self.bullet(card, "Knižnice: Scikit-Learn, Transformers, Torch")
-        self.bullet(card, "Hybridný model:")
-        self.tab_bullet(card, "TF-IDF: Štatistika slov.")
-        self.tab_bullet(card, "BERT: Hlboké učenie.")
-        self.bullet(card, "Klasifikátor: Random Forest")
-        self.bullet(card, "Dáta: Vlastný zber + augmentácia")
+        self.bullet(card, "Experimentálna pipeline")
+        self.bullet(card, "Vlastný dataset (SK titulky)")
+        self.bullet(card, "Manuálna anotácia")
+        self.bullet(card, "TF-IDF + BERT")
+        self.bullet(card, "Random Forest")
+        self.bullet(card, "Vyvažovanie tried")
+        self.bullet(card, "Konzervatívny self-learning")
 
     def medialens(self):
         self.clear_main()
-        self.header("Systém MediaLens")
+        self.header("Použité technológie")
         card = self.card()
 
-        self.bullet(card, "Desktopová aplikácia: Na tréning a analýzu textu")
-        self.bullet(card, "Rozšírenie do prehliadača: Okamžitá kontrola pri čítaní webu")
-        self.bullet(card, "Self-learning modul:")
-        self.tab_bullet(card, "Model sa „doučuje“ za behu")
-        self.tab_bullet(card, "Bezpečnostná poistka: Učí sa len pri istote > 85 %")
+        self.bullet(card, "Python")
+        self.bullet(card, "Scikit-Learn, PyTorch, Numpy")
+        self.bullet(card, "TF-IDF (lexikálny prístup)")
+        self.bullet(card, "BERT (kontextový prístup)")
+        self.bullet(card, "Random Forest")
+        self.bullet(card, "Hybridný model")
 
     def functionality(self):
         self.clear_main()
         self.header("Výsledky a overenie")
         card = self.card()
 
-        self.bullet(card, "Úspešnosť AI:")
-        self.tab_bullet(card, "Vysoká pri clickbaite a dramatizácii (zjavné znaky)")
-        self.tab_bullet(card, "Nižšia pri jemných logických klamoch (subtílna manipulácia).")
-        self.bullet(card, "Dotazníkový prieskum (90+ respondentov):")
-        self.tab_bullet(card, "Ľudia tiež zlyhávajú pri jemnej manipulácii.")
+        self.bullet(card, "Vysoká presnosť pri clickbaite")
+        self.bullet(card, "Slabšie pri jemných klamoch")
+        self.bullet(card, "Dotazník: 90+ respondentov")
+        self.bullet(card, "Ľudia majú podobné problémy")
 
     def video(self):
         self.clear_main()
-        self.header("Ukážka Systému")
+        self.header("Praktická ukážka")
         card = self.card()
+
+        self.bullet(card, "Zadanie titulku")
+        self.bullet(card, "Klasifikácia + pravdepodobnosti")
+        self.bullet(card, "Porovnanie clickbait vs. neutrálny")
+        self.bullet(card, "Auto-klasifikácia titulkov")
 
     def results(self):
         self.clear_main()
-        self.header("Závery a prínos práce")
+        self.header("Záver a prínos")
         card = self.card()
 
-        self.bullet(card, "Splnenie cieľov: Funkčný prototyp pre slovenský jazyk")
-        self.bullet(card, "Hlavný prínos:")
-        self.tab_bullet(card, "Podpora mediálnej gramotnosti (nie cenzúra)")
-        self.tab_bullet(card, "Rozvoj kritického myslenia")
-        self.tab_bullet(card, "Nástroj pre vzdelávanie a rýchlu orientáciu")
+        self.bullet(card, "Splnené ciele práce")
+        self.bullet(card, "Funkčný prototyp pre SK jazyk")
+        self.bullet(card, "Podpora kritického myslenia")
+        self.bullet(card, "Vzdelávacie využitie")
 
     def future(self):
         self.clear_main()
@@ -225,7 +229,7 @@ class MediaLensPresentation:
         card = self.card()
 
         self.bullet(card, "Rozšírenie datasetu")
-        self.bullet(card, "Hlbšia analýza")
+        self.bullet(card, "Hlbšia analýza textov")
         self.bullet(card, "Optimalizácia modelov")
 
     def future_data(self):
@@ -233,30 +237,34 @@ class MediaLensPresentation:
         self.header("Rozšírenie datasetu")
         card = self.card()
 
-        self.bullet(card, "Zber väčšieho množstva dát pre lepšiu generalizáciu")
-        self.bullet(card, "Vyváženie tried (viac manipulatívnych príkladov).")
+        self.bullet(card, "Zber väčšieho množstva dát")
+        self.bullet(card, "Vyváženie tried")
+        self.bullet(card, "Lepšia generalizácia modelu")
 
     def future_anal(self):
         self.clear_main()
-        self.header("Hlbšia analýza:")
+        self.header("Hlbšia analýza")
         card = self.card()
 
-        self.bullet(card, "Prechod z titulkov na analýzu celých článkov.")
-        self.bullet(card, "Overovanie faktov (fact-checking) voči externým zdrojom.")
+        self.bullet(card, "Analýza celých článkov")
+        self.bullet(card, "Overovanie faktov voči externým zdrojom")
 
     def future_model(self):
         self.clear_main()
-        self.header("Optimalizácia modelov ")
+        self.header("Optimalizácia modelov")
         card = self.card()
 
-        self.bullet(card, "TF-IDF + SVM (Support Vector Machine).")
-        self.bullet(card, "BERT + Logistic Regression.")
-        self.bullet(card, "MLP (Multi-Layer Perceptron - neurónové siete).")
+        self.bullet(card, "TF-IDF + SVM")
+        self.bullet(card, "BERT + Logistic Regression")
+        self.bullet(card, "MLP – neurónové siete")
 
     def thanks(self):
         self.clear_main()
         self.header("Ďakujem za pozornosť")
         card = self.card()
+
+        self.bullet(card, "MediaLens – detekcia manipulácie v médiách")
+        self.bullet(card, "Otázky?")
 
     def run(self):
         self.root.mainloop()

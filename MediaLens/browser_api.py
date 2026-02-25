@@ -7,6 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 classifier = NewsClassifier()
+classifier.load_models()
 
 
 @app.route("/classify", methods=["POST", "OPTIONS"])
